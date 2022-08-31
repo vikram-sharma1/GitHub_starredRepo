@@ -2,6 +2,8 @@ body{
     padding: 10px;
 }
 .outerBox{
+    width: 80%;
+    margin: auto;
     border: 1px solid black;
 }
 .singleBox{
@@ -12,9 +14,9 @@ body{
     margin: 20px;
     padding: 10px;
     background-color: rgb(227, 227, 227);
-    width: 70%;
+    width: 90%;
     margin: auto;
-   margin-top: 10px;
+    margin-top: 10px;
 }
 .one{
     /* border: 1px solid black; */
@@ -25,6 +27,9 @@ body{
     flex: 7;
     text-align: left;
     padding-left: 10px;
+}
+.two:hover{
+    cursor: pointer;
 }
 .imgBox{
     width: 50%;
@@ -47,6 +52,13 @@ body{
     flex: 1;
 }
 .flexSize-3{
-    /* border: 1px solid black; */
     flex: 3;
+}
+.PagiBox{
+    
+    /* border: 1px solid black; */
+    width: 35%;
+    margin: auto;
+    text-align: center;
+    padding: 50px;
 }

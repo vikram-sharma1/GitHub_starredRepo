@@ -3,25 +3,33 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './styles/StarredRepo.css'
 import Box from '@mui/material/Box';
+import Pagination from '@mui/material/Pagination';
+  
 
 
 const StarredRepo = () => {
 
     const [data, setData] = useState([])
-    const [page, setPage] = useState(1)
-  
+    const [page, setPage  ] = useState(1)
+   
+
+
     useEffect(()=>{
       getDataGit()
-    },[])
+    },[page])
   
     const getDataGit = () => {
   
       axios.get(`https://api.github.com/search/repositories?q=created:>2017-10-22&sort=stars&order=desc&page=${page}`).then((res)=>{
-        console.log(res.data.items)
         setData(res.data.items)
+       
       })
   
     }
+
+    const handleChange = (event, value) => {
+        setPage(value);
+      };
   
   
   return (
@@ -69,7 +77,11 @@ const StarredRepo = () => {
                     </div>
                 )
             })}
+            <div className='PagiBox'>
+             <Pagination count={8} page={page} onChange={handleChange} />
+            </div>
         </div>
+        
     </>
   )
 }
