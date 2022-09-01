@@ -62,3 +62,35 @@ body{
     text-align: center;
     padding: 50px;
 }
+.downArrow{
+    position: relative;
+    font-size: 80px;
+    top: 30px;
+    /* right: 50px; */
+}
+.Click{
+    display: none;
+}
+.downArrow:hover + .Click{
+    display: block;
+    
+}
+.downArrow:hover {
+   cursor: pointer;
+    
+}
+.mymodal {
+    width: 50%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  
+    border: 1px solid #ccc;
+    background: #fff;
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    padding: 20px;
+  }
+  

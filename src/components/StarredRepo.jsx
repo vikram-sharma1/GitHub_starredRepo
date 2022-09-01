@@ -4,14 +4,24 @@ import axios from 'axios';
 import './styles/StarredRepo.css'
 import Box from '@mui/material/Box';
 import Pagination from '@mui/material/Pagination';
-  
+import Modal from "react-modal";
+import { AiFillCaretDown } from 'react-icons/ai';
+import ModalData from './ModalData';
 
+  
+Modal.setAppElement("#root");
 
 const StarredRepo = () => {
 
     const [data, setData] = useState([])
     const [page, setPage  ] = useState(1)
-   
+
+    const [isOpen, setIsOpen] = useState(true);
+        function toggleModal() {
+            // console.log('yes')
+            setIsOpen(!isOpen);
+            // console.log(isOpen)
+          }
 
 
     useEffect(()=>{
@@ -30,6 +40,11 @@ const StarredRepo = () => {
     const handleChange = (event, value) => {
         setPage(value);
       };
+
+      const localDataPass = (singleData) => {
+        // console.log('singleData:', singleData.owner.login)
+        localStorage.setItem('NameOfUser', JSON.stringify(singleData.owner.login))
+      }
   
   
   return (
@@ -47,6 +62,7 @@ const StarredRepo = () => {
 
                 return (
                     <div key={singleData.id} >
+
                         <div className='singleBox'>
                             <div className='one'>
                                 {/* to show the User Image  */}
@@ -73,6 +89,12 @@ const StarredRepo = () => {
                                     <div className='flexSize-3'>Last Pushed at <b>{snow_date}</b> by <b>{singleData.name}</b></div>
                                 </div>
                             </div>
+                            <div>
+                                <AiFillCaretDown className='downArrow' onClick={()=>{
+                                    toggleModal(); localDataPass(singleData)
+                                }}/>
+                                <p className='Click'>Click to open Modal</p>
+                            </div>
                         </div>
                     </div>
                 )
@@ -81,7 +103,20 @@ const StarredRepo = () => {
              <Pagination count={8} page={page} onChange={handleChange} />
             </div>
         </div>
-        
+
+
+
+        <Modal
+        isOpen={isOpen}
+        onRequestClose={toggleModal}
+        contentLabel="My dialog"
+        className="mymodal"
+        overlayClassName="myoverlay"
+        closeTimeoutMS={500}
+      >
+        <ModalData/>
+        <button onClick={toggleModal}>Close modal</button>
+      </Modal>
     </>
   )
 }
